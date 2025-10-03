@@ -1,29 +1,24 @@
-import java.util.Scanner;
-public class App {
-    public static void main(String[] args) {
-       Scanner sc = new Scanner(System.in);
+public class User {
+    private final String name; // frist and last
+    private final int age; // in years
+    private final double weight; // in lb 
+    private final double height; // in inches but will be converted to feet
+    private final String goal; // could be one of four, weight loss, weight gain, muscle gain, or maintain weight 
 
-       System.out.println("Enter your name: "); 
-       String name = sc.nextLine(); 
+    public User(String name, int age, double weight, double height, String goal) {
+        this.name = name;
+        this.age = age; 
+        this.weight = weight;
+        this.height = height;
+        this.goal = goal; 
+    }
 
-       System.out.println("Enter your age: "); 
-       int age = sc.nextInt(); 
-
-       System.out.println("Enter your weight (lbs): "); 
-       double weight = sc.nextDouble(); 
-
-       System.out.println("Enter your height (inches): "); 
-       double height = sc.nextDouble(); 
-
-       System.out.println("Enter your goal: ");
-       String goal = sc.nextLine(); 
-
-       User user = new User(name, age, weight, height, goal); 
-
-       System.out.println("\nProfile created successfully!");
-       System.out.println(user); 
-
-       sc.close();
-
+    @Override
+    public String toString() {
+        return "User: " + name +
+                "\nAge: " + age +
+                "\nWeight: " + weight + " lbs" +
+                "\nHeight: " + height + " inches" +
+                "\nGoal: " + goal;
     }
 }
