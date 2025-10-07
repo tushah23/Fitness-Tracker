@@ -1,33 +1,43 @@
-import java.util.Scanner;
-public class App {
-    public static void main(String[] args) {
-        try (Scanner sc = new Scanner(System.in)) {
-            System.out.println("Enter your name: ");
-            String name = sc.nextLine();
-            
-            System.out.println("Enter your age: ");
-            int age = sc.nextInt();
-            
-            System.out.println("Enter your weight (lbs): ");
-            double weight = sc.nextDouble();
-            
-            System.out.println("Enter your height (inches): ");
-            double height = sc.nextDouble();
-            
-            System.out.println("Enter your goal: ");
-            String goal = sc.nextLine();
-            
-            User user = new User(name, age, weight, height, goal);
-            
-            System.out.println("\nProfile created successfully!");
-            System.out.println(user);
+import java.util.*;
+public class StrengthWorkout extends Workout {
+    private final double sets;
+    private final double reps; // per set (hopfully its the same for each set)
+    private final double weight; // in lbs
+    private final String exerciseName; 
+    private final Map<String, List<Double>> liftLog = new HashMap<>();
 
-            Workout w1 = new CardioWorkout("cardio", "none", "medium", 30, 3.5);
-            w1.showDetails();
+    public StrengthWorkout(String initType, String initEquipment, String initIntensity, double initSets, double initReps, double initWeight, String initExerciseName) {
+        super(initType, initEquipment, initIntensity);
+        this.sets = initSets;
+        this.reps = initReps;
+        this.weight = initWeight;
+        this.exerciseName = initExerciseName;
+    }
 
-            Workout w2 = new StrengthWorkout("strength", "dumbbells", "high", 4, 10, 50, "bicep curls");
-            w2.showDetails();
+    public void addExercise(String newExerciseName, double newSets, double newReps, double newWeight) {
+        List<Double> newSetRepWeight = new ArrayList<>();
+        newSetRepWeight.add(newSets); 
+        newSetRepWeight.add(newReps);
+        newSetRepWeight.add(newWeight);
+        liftLog.put(newExerciseName, newSetRepWeight); 
+    }
+
+    @Override
+    public void showDetails() {
+        System.out.println("Strength Workout Details: ");
+        for (String key : liftLog.keySet()) {
+            System.out.println("Exercise: " + key); 
+            System.out.println("Sets " + liftLog.get(key).get(0));
+            System.out.println("Reps per set" + liftLog.get(key).get(1));
+            System.out.println("Weight: " + liftLog.get(key).get(2));
+            System.out.println("Equipment: " + super.equipment); 
         }
+        System.out.println("Intensity: " + super.intensity);
+
+    }
+
+    
+}
 
     }
 }
