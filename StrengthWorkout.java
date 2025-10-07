@@ -4,7 +4,6 @@ public class StrengthWorkout extends Workout {
     private final double reps; // per set (hopfully its the same for each set)
     private final double weight; // in lbs
     private final String exerciseName; 
-    private final List<Double> currentSetRepWeight = new ArrayList<>();
     private final Map<String, List<Double>> liftLog = new HashMap<>();
 
     public StrengthWorkout(String initType, String initEquipment, String initIntensity, double initSets, double initReps, double initWeight, String initExerciseName) {
@@ -13,10 +12,14 @@ public class StrengthWorkout extends Workout {
         this.reps = initReps;
         this.weight = initWeight;
         this.exerciseName = initExerciseName;
-        currentSetRepWeight.add(sets); 
-        currentSetRepWeight.add(reps);
-        currentSetRepWeight.add(weight);
-        liftLog.put(exerciseName, currentSetRepWeight); 
+    }
+
+    public void addExercise(String newExerciseName, double newSets, double newReps, double newWeight) {
+        List<Double> newSetRepWeight = new ArrayList<>();
+        newSetRepWeight.add(newSets); 
+        newSetRepWeight.add(newReps);
+        newSetRepWeight.add(newWeight);
+        liftLog.put(newExerciseName, newSetRepWeight); 
     }
 
     @Override
