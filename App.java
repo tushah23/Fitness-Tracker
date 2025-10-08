@@ -83,7 +83,23 @@ public class App {
 
         }
 
+    }
 
+    public static void createCardioWorkout(Scanner sc) {
+        System.out.println("Enter equiptement: ");
+        String equiptment = sc.nextLine(); 
+
+        System.out.println("Enter intensity (low, medium, hight): "); 
+        String intensity = sc.nextLine(); 
+
+        System.out.println("Enter duration (minutes): ");
+        double duration = sc.nextDouble();
+
+        System.out.println("Enter distance (miles): ");
+        double distance = sc.nextDouble();
+
+        CardioWorkout cardioWorkout = new CardioWorkout(equiptment, intensity, "Cardio", duration, distance);
+        cardioWorkout.showDetails();
     }
 }
 
